@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+    <title>depression_test</title>
+    <style>
+        #depression_test {
+            text-align: center;
+            padding: 30px;
+            width: 600px;
+            height: 1970px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 30px;
+            border: 1px solid;
+        }
+
+        #depression_test h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question_block {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        .question_block p {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .question_block label {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        input[type="radio"] {
+            accent-color: #00a6ff;
+        }
+
+        #depression_test input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #00a6ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #reservation {
+            text-align: center;
+            padding: 30px;
+            width: 300px;
+            height: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: absolute;
+            top: 2100px;
+            left: 400px;
+            background-color: white;
+            display: none;
+        }
+
+        #reservation input {
+            width: 90%;
+            padding: 8px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            background-color: #f2f3f3;
+            font-size: 14px;
+        }
+
+        #reservation input[type="submit"] {
+            background-color: #00a6ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #word {
+            text-align: center;
+        }
+
+        #result {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        p,
+        h1,
+        h2,
+        h3,
+        label,
+        hr,
+        iframe,
+        input {
+            user-select: none;
+        }
+
+        .diamond1-container {
+            position: absolute;
+            left: 203px;
+            top: 180px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .diamond2-container {
+            position: absolute;
+            left: 270px;
+            top: 240px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .circle {
+            position: absolute;
+            bottom: 855px;
+            left: 300px;
+            width: 20px;
+            height: 20px;
+            background-color: #d2f7b2;
+            border-radius: 50%;
+            border: 1px solid;
+        }
+
+        .flatpickr-calendar {
+            font-size: 14px;
+            transform: translate(-50%, -50%) scale(1.0);
+            position: absolute !important;
+            top: 2200px !important;
+            left: 580px !important;
+            display: grid;
+            grid-template-columns: repeat(7, 100px);
+            grid-gap: 5px;
+        }
+
+        .flatpickr-day {
+            height: 100px !important;
+            width: 100px !important;
+            font-size: 13px !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            box-sizing: border-box;
+            position: relative;
+            pointer-events: none;
+        }
+
+        .flatpickr-day span.date-label {
+            margin-bottom: 2px;
+            font-weight: bold;
+        }
+
+        .flatpickr-day .time-buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 100%;
+            pointer-events: auto;
+        }
+
+        .flatpickr-day .time-buttons-container button {
+            font-size: 10px;
+            padding: 2px 0;
+            width: 100%;
+            border-radius: 3px;
+            background-color: #00a6ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .flatpickr-day .time-buttons-container button:hover {
+            background-color: #007bb8;
+        }
+
+        #resultVideo {
+            display: none;
+        }
+
+        #resultVideo iframe {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="diamond1-container">
+        <svg viewBox="0 0 100 100">
+            <path d="M 50 0
+               Q 70 40, 100 50
+               Q 70 60, 50 100
+               Q 30 60, 0 50
+               Q 30 40, 50 0
+               Z" fill="#f4aadd" stroke="black" stroke-width="1" />
+        </svg>
+    </div>
+
+    <div class="diamond2-container">
+        <svg viewBox="0 0 100 100">
+            <path d="M 50 0
+               Q 70 40, 100 50
+               Q 70 60, 50 100
+               Q 30 60, 0 50
+               Q 30 40, 50 0
+               Z" fill="#f4aadd" stroke="black" stroke-width="1" />
+        </svg>
+    </div>
+
+    <div class="shape circle"></div>
+
+    <div style="position: absolute; bottom: 810px; right: 420px; width: 100px; height: 100px;">
+        <svg width="100" height="100" viewBox="0 0 200 200">
+            <path id="wavy-circle" fill="skyblue" stroke="black" stroke-width="1" />
+            <script>
+                const R = 80;
+                const A = 6.5;
+                const n = 8;
+                const cx = 100;
+                const cy = 100;
+                const steps = 360;
+
+                let d = "";
+                for (let i = 0; i <= steps; i++) {
+                    const theta = (i / steps) * 2 * Math.PI;
+                    const r = R + A * Math.sin(n * theta);
+                    const x = cx + r * Math.cos(theta);
+                    const y = cy + r * Math.sin(theta);
+                    d += (i === 0 ? "M" : "L") + x + "," + y + " ";
+                }
+
+                d += "Z";
+                document.getElementById("wavy-circle").setAttribute("d", d);
+            </script>
+        </svg>
+    </div>
+
+    <div style="position: absolute; top: 60px; left: 810px; z-index: 10;">
+        <svg width="150" height="150" viewBox="0 0 300 300" style="transform: rotate(-30deg); display: block;">
+            <ellipse cx="150" cy="150" rx="101" ry="51" fill="none" stroke="#000" stroke-width="1" />
+            <ellipse cx="150" cy="150" rx="101" ry="51" transform="rotate(90, 150, 150)" fill="none" stroke="#000"
+                stroke-width="1" />
+            <ellipse cx="150" cy="150" rx="100" ry="50" fill="#ffee99" />
+            <ellipse cx="150" cy="150" rx="100" ry="50" fill="#ffee99" transform="rotate(90, 150, 150)" />
+            <path d="
+      M 50,150 
+      A 100,50 0 0,1 250,150
+      A 100,50 0 0,1 50,150
+      M 150,50 
+      A 50,100 0 0,1 150,250
+      A 50,100 0 0,1 150,50
+    " fill="none" />
+        </svg>
+    </div>
+
+    <div id="depression_test">
+        <form id="depression_form">
+            <svg width="300" height="140">
+                <ellipse cx="150" cy="100" rx="80" ry="30" fill="#f3f3f3" stroke="black" stroke-width="0.4" />
+                <img id="마음진단" src="https://i.imgur.com/ykyrJco.png" style="position:absolute; left:512px; top:165px;">
+            </svg>
+
+            <img id="설문조사" src="https://i.imgur.com/xIAjupD.png"
+                style="width:220px; position:absolute; left: 465px; top: 250px;">
+
+            <br></br>
+            <br></br>
+            <br></br>
+            <div class="question_block">
+                <p>1. 잠을 설치거나 잠을 잘 들지 못하는 날이 많아졌다.
+                </p>
+                <label><input type="radio" name="question1" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question1" value="2">그렇다</label>
+                <label><input type="radio" name="question1" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question1" value="0">아니다</label>
+                <hr>
+
+                <p>2. 잠시라도 안정이 안되고 생각이 많아졌다.</p>
+                <label><input type="radio" name="question2" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question2" value="2">그렇다</label>
+                <label><input type="radio" name="question2" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question2" value="0">아니다</label>
+                <hr>
+
+                <p>3. 학교 생활이 불행하게 느껴진다.</p>
+                <label><input type="radio" name="question3" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question3" value="2">그렇다</label>
+                <label><input type="radio" name="question3" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question3" value="0">아니다</label>
+                <hr>
+
+                <p>4. 아무것도 하기 싫고 혼자 있고 싶다.</p>
+                <label><input type="radio" name="question4" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question4" value="2">그렇다</label>
+                <label><input type="radio" name="question4" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question4" value="0">아니다</label>
+                <hr>
+
+                <p>5. 무엇이든 집중하기가 어렵다.</p>
+                <label><input type="radio" name="question5" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question5" value="2">그렇다</label>
+                <label><input type="radio" name="question5" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question5" value="0">아니다</label>
+                <hr>
+
+                <p>6. 평소에 즐겨하던 것들 조차 흥미를 잃었다.</p>
+                <label><input type="radio" name="question6" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question6" value="2">그렇다</label>
+                <label><input type="radio" name="question6" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question6" value="0">아니다</label>
+                <hr>
+
+                <p>7. 체중이 크게 변했다.</p>
+                <label><input type="radio" name="question7" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question7" value="2">그렇다</label>
+                <label><input type="radio" name="question7" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question7" value="0">아니다</label>
+                <hr>
+
+                <p>8. 불현듯 슬퍼지거나 사소한 일에도 짜증이 날 때가 있다.</p>
+                <label><input type="radio" name="question8" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question8" value="2">그렇다</label>
+                <label><input type="radio" name="question8" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question8" value="0">아니다</label>
+                <hr>
+
+                <p>9. 말수가 줄고 행동이 느려졌다.</p>
+                <label><input type="radio" name="question9" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question9" value="2">그렇다</label>
+                <label><input type="radio" name="question9" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question9" value="0">아니다</label>
+                <hr>
+
+                <p>10. 앞으로의 진로나 삶이 걱정된다.</p>
+                <label><input type="radio" name="question10" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question10" value="2">그렇다</label>
+                <label><input type="radio" name="question10" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question10" value="0">아니다</label>
+                <hr>
+
+                <p>11. 내 자신이 보잘 것 없고 잘하는 게 아무것도 없다는 생각이 든다.</p>
+                <label><input type="radio" name="question11" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question11" value="2">그렇다</label>
+                <label><input type="radio" name="question11" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question11" value="0">아니다</label>
+                <hr>
+
+                <p>12. 사람들이 나를 싫어하는 것 같다.</p>
+                <label><input type="radio" name="question12" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question12" value="2">그렇다</label>
+                <label><input type="radio" name="question12" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question12" value="0">아니다</label>
+                <hr>
+
+                <p>13. 가족이나 친구의 위로나 격려에도 우울한 기분이 풀리지 않는다.</p>
+                <label><input type="radio" name="question13" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question13" value="2">그렇다</label>
+                <label><input type="radio" name="question13" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question13" value="0">아니다</label>
+                <hr>
+
+                <p>14. 세상에 혼자 있는 듯한 외로움을 느낀다.</p>
+                <label><input type="radio" name="question14" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question14" value="2">그렇다</label>
+                <label><input type="radio" name="question14" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question14" value="0">아니다</label>
+                <hr>
+
+                <p>15. 거친 말투나 공격적 행동을 하게 된다</p>
+                <label><input type="radio" name="question15" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question15" value="2">그렇다</label>
+                <label><input type="radio" name="question15" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question15" value="0">아니다</label>
+                <hr>
+
+                <p>16. 쉽게 피곤해지고 두통, 복통 등이 자주 생긴다.</p>
+                <label><input type="radio" name="question16" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question16" value="2">그렇다</label>
+                <label><input type="radio" name="question16" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question16" value="0">아니다</label>
+                <hr>
+
+                <p>17. 별 것 아닌 일에도 자책을 하거나 죄책감을 느낀다.
+                </p>
+                <label><input type="radio" name="question17" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question17" value="2">그렇다</label>
+                <label><input type="radio" name="question17" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question17" value="0">아니다</label>
+                <hr>
+
+                <p>18. 울음을 터뜨리거나 불안, 초조감을 느낀다.</p>
+                <label><input type="radio" name="question18" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question18" value="2">그렇다</label>
+                <label><input type="radio" name="question18" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question18" value="0">아니다</label>
+                <hr>
+
+                <p>19. 절망적, 부정적 표현이 늘었다.</p>
+                <label><input type="radio" name="question19" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question19" value="2">그렇다</label>
+                <label><input type="radio" name="question19" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question19" value="0">아니다</label>
+                <hr>
+
+                <p>20. 가끔 또는 자주 자살을 생각하게 된다.</p>
+                <label><input type="radio" name="question20" value="3" required />항상 그렇다</label>
+                <label><input type="radio" name="question20" value="2">그렇다</label>
+                <label><input type="radio" name="question20" value="1">가끔 그렇다</label>
+                <label><input type="radio" name="question20" value="0">아니다</label>
+                <hr>
+            </div>
+
+            <input type="submit" value="제출하기">
+            <input type="input" id="score-result" name="result" style="display:none;" />
+        </form>
+        <div id="result"></div>
+        <div id="word"></div>
+    </div>
+
+    <div id="resultVideo" style="position:absolute; left:280px; bottom:0px;"><iframe
+            src="https://drive.google.com/file/d/1PQrIELybbAQ8RgDCbUebgWSQ_iHTV9tM/preview" width="600" height="400"
+            frameborder="0"></iframe></div>
+
+    <div id="reservation">
+        <form id="reservation_form">
+            <h2>WEE CLASS 예약</h2>
+            <input type="number" name="number" placeholder="학번" required>
+            <input type="text" name="student" placeholder="이름" required>
+            <input type="text" id="calendar" name="datetime" placeholder="예약 시간 선택" required>
+            <input type="submit" value="예약하기">
+        </form>
+    </div>
+
+    <div id="cards"></div>
+
+</body>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+<script>
+    let reservedTimes = [];
+
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(fetchData);
+
+    function fetchData() {
+        var sheetID = '1u173RSeIIVjAfCXwgTpAqJcURC_BspHKCem3LLsqnZI';
+        var query = new google.visualization.Query(
+            'https://docs.google.com/spreadsheets/d/' + sheetID + '/gviz/tq?sheet=Sheet1&headers=1'
+        );
+
+        query.send(function (response) {
+            if (response.isError()) {
+                document.getElementById('cards').innerHTML =
+                    '오류: ' + response.getMessage() + ' ' + response.getDetailedMessage();
+                return;
+            }
+
+            var data = response.getDataTable();
+            var container = document.getElementById('cards');
+            container.innerHTML = '';
+            reservedTimes = [];
+
+            for (var i = 0; i < data.getNumberOfRows(); i++) {
+                var reserved_time = data.getValue(i, 2);
+                reservedTimes.push(new Date(reserved_time));
+
+                var cardHTML = `
+          <div class="card" style="display:none;">
+            <p>${reserved_time}</p>
+          </div>
+        `;
+                container.innerHTML += cardHTML;
+            }
+
+            initFlatpickr();
+        });
+    }
+
+    function initFlatpickr() {
+        flatpickr("#calendar", {
+            locale: "ko",
+            enableTime: false,
+            time_24hr: true,
+            dateFormat: "Y-m-d H:i",
+            minDate: "today",
+            disable: [
+                function (date) {
+                    if (date.getDay() === 0 || date.getDay() === 6) return true;
+
+                    return reservedTimes.some(reserved => {
+                        return (
+                            reserved.getFullYear() === date.getFullYear() &&
+                            reserved.getMonth() === date.getMonth() &&
+                            reserved.getDate() === date.getDate() &&
+                            reserved.getHours() === date.getHours() &&
+                            reserved.getMinutes() === date.getMinutes()
+                        );
+                    });
+                }
+            ],
+            onDayCreate: function (dObj, dStr, fp, dayElem) {
+                const date = dayElem.dateObj;
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const formattedDate = fp.formatDate(date, "Y-m-d");
+
+                const dayNumber = dayElem.innerText;
+                dayElem.innerHTML = "";
+
+                const label = document.createElement("span");
+                label.className = "date-label";
+                label.textContent = dayNumber;
+                dayElem.appendChild(label);
+
+                const minDate = new Date("2025-06-08");
+                const maxDate = new Date("2025-06-20");
+
+                if (
+                    date < today ||
+                    date.getDay() === 0 ||
+                    date.getDay() === 6 ||
+                    date < minDate ||
+                    date > maxDate ||
+                    date.getMonth() !== fp.currentMonth ||
+                    date.getFullYear() !== fp.currentYear
+                ) return;
+
+                const times = ["09:30", "10:30", "11:30", "14:30"];
+                const container = document.createElement("div");
+                container.classList.add("time-buttons-container");
+
+                times.forEach(time => {
+                    const fullDateTime = `${formattedDate} ${time}`;
+                    const btn = document.createElement("button");
+                    btn.textContent = time;
+
+                    if (reservedTimes.some(reserved => {
+                        const reservedFormatted = fp.formatDate(reserved, "Y-m-d H:i");
+                        return reservedFormatted === fullDateTime;
+                    })) {
+                        btn.disabled = true;
+                        btn.style.backgroundColor = "#ccc";
+                        btn.style.color = "#666";
+                        btn.style.cursor = "not-allowed";
+                    } else {
+                        btn.onclick = function (e) {
+                            e.stopPropagation();
+                            fp.setDate(fullDateTime, true);
+                            fp.close();
+                        };
+                    }
+
+                    container.appendChild(btn);
+                });
+
+                dayElem.appendChild(container);
+            }
+        });
+    }
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwffhQTbyRFD4IpcM9W2A6W-a2baSMXvkmgOZF5zM05-SxagPq5RjryA_R19rnFruNt/exec';
+    const depressionForm = document.getElementById("depression_form");
+    const reservationForm = document.getElementById("reservation_form");
+    const resultDisplay = document.getElementById("result");
+    const wordDisplay = document.getElementById("word");
+    const reservationDiv = document.getElementById("reservation");
+    const video = document.getElementById("resultVideo");
+
+    let depressionData = {};
+
+    depressionForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        depressionForm.querySelector('input[type="submit"]').style.display = "none";
+
+        let totalScore = 0;
+        depressionData = {};
+
+        for (let i = 1; i <= 20; i++) {
+            const selected = depressionForm.querySelector(`input[name="question${i}"]:checked`);
+            if (selected) {
+                totalScore += parseInt(selected.value);
+                depressionData[`question${i}`] = selected.value;
+            }
+        }
+
+        document.getElementById("score-result").value = totalScore;
+
+        if (totalScore <= 15) {
+            reservationDiv.style.display = "block";
+            video.style.display = "block";
+            resultDisplay.textContent = `정상 범위`;
+            resultDisplay.style.fontSize = "24px";
+            wordDisplay.textContent = '마음을 털어놓는 것만으로도 한결 나아질 수 있어요. 필요하시면 위클래스 상담을 예약해보세요☺️';
+            wordDisplay.style.fontSize = "18px";
+        } else if (totalScore > 15 && totalScore <= 25) {
+            reservationDiv.style.display = "block";
+            video.style.display = "block";
+            resultDisplay.textContent = `경도 우울증 (심리상담 권장)`;
+            resultDisplay.style.fontSize = "24px";
+            wordDisplay.textContent = '마음을 털어놓는 것만으로도 한결 나아질 수 있어요. 필요하시면 위클래스 상담을 예약해보세요☺️';
+            wordDisplay.style.fontSize = "18px";
+        } else if (totalScore > 25 && totalScore <= 40) {
+            reservationDiv.style.display = "block";
+            video.style.display = "block";
+            resultDisplay.textContent = `중등도 우울증 (상담 + 정신건강의학과 진료 고려)`;
+            resultDisplay.style.fontSize = "24px";
+            wordDisplay.textContent = '마음을 털어놓는 것만으로도 한결 나아질 수 있어요. 필요하시면 위클래스 상담을 예약해보세요☺️';
+            wordDisplay.style.fontSize = "18px";
+        } else {
+            reservationDiv.style.display = "block";
+            video.style.display = "block";
+            resultDisplay.textContent = `중증 우울증 가능성 (전문적 진단과 치료 필요)`;
+            resultDisplay.style.fontSize = "24px";
+            wordDisplay.textContent = '마음을 털어놓는 것만으로도 한결 나아질 수 있어요. 필요하시면 위클래스 상담을 예약해보세요☺️';
+            wordDisplay.style.fontSize = "18px";
+        }
+    });
+
+    reservationForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        reservationDiv.style.display = "none";
+
+        const formData = new FormData();
+
+        for (const key in depressionData) {
+            formData.append(key, depressionData[key]);
+        }
+
+        const inputs = reservationForm.querySelectorAll("input");
+        inputs.forEach(input => {
+            formData.append(input.name, input.value);
+        });
+
+        fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => {
+                if (response.ok) {
+                    alert("제출이 완료되었습니다!");
+                    depressionForm.reset();
+                    reservationForm.reset();
+                    resultDisplay.textContent = "";
+                } else {
+                    alert("제출 실패! 다시 시도해 주세요.");
+                }
+            })
+            .catch(error => {
+                console.error("Error!", error.message);
+                alert("전송 중 오류가 발생했습니다.");
+            });
+    });
+</script>
+
+</html>
