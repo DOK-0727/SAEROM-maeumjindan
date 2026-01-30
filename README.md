@@ -15,7 +15,8 @@
 </P>
 
 <h3>예약 폼</h3>
-<img src="explain_img/Element/reservation_form.png">
+<p><img src="explain_img/Element/reservation_form.png">
+<img src="explain_img/Element/reservation_form_calendar.png"></p>
 <p>이 요소는 학생들이 WEE 클래스의 예약 상태를 확인하고 예약할 수 있는 기능을 제공합니다.</p>
 <p>
     <img src="explain_img/My_Tech/HTML.jpeg" height="30px;"><img src="explain_img/My_Tech/CSS.jpeg" height="30px;"><img src="explain_img/My_Tech/JavaScript.jpeg" height="30px;">
